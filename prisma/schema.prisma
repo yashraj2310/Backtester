@@ -1,0 +1,27 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+generator python {
+  provider      = "prisma-client-py"
+  binaryTargets = ["native"]      // makes sure the right query-engine is built
+  // output     = "prisma"       // you can omit this—by default it emits into a `prisma/` Python package
+   recursive_type_depth       = -1
+   enable_experimental_decimal = true
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model TickerData {
+  id        String    @id @default(cuid())
+  datetime  DateTime
+  open      Decimal
+  high      Decimal
+  low       Decimal
+  close     Decimal
+  volume    Int
+}
