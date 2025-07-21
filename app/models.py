@@ -12,9 +12,9 @@ class TickerDataCreate(BaseModel):
     volume: int
 
 # Model for representing a record from the DB (output)
-# This includes the auto-generated ID
+
 class TickerDataResponse(TickerDataCreate):
     id: str
 
     class Config:
-        orm_mode = True # Helps Pydantic work with ORM objects
+        orm_mode = True 

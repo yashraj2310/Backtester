@@ -6,8 +6,8 @@ generator client {
 }
 generator python {
   provider      = "prisma-client-py"
-  binaryTargets = ["native"]      // makes sure the right query-engine is built
-  // output     = "prisma"       // you can omit this—by default it emits into a `prisma/` Python package
+  binaryTargets = ["native"]     
+  // output     = "prisma"      
    recursive_type_depth       = -1
    enable_experimental_decimal = true
 }

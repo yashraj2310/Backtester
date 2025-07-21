@@ -7,7 +7,7 @@ def moving_average_crossover_strategy(
     short_window: int = 10,
     long_window: int = 30
 ) -> Dict[str, Any]:
-    # ... (the top part of the function is the same) ...
+    
     if not data or len(data) < long_window:
         return {"signals": [], "performance": "Insufficient data to calculate strategy."}
 
@@ -25,8 +25,7 @@ def moving_average_crossover_strategy(
     
     df['position'] = df['signal'].diff()
     
-    # --- THIS IS THE CORRECTED LINE ---
-    # We explicitly filter out the NaN on the first row and only look for actual changes.
+  
     crossover_points = df[df['position'].notna() & (df['position'] != 0)]
 
     signals = []

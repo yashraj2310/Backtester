@@ -34,13 +34,13 @@ async def add_new_data(data: TickerDataCreate):
     Input data is validated using the TickerDataCreate Pydantic model.
     """
     try:
-        # Pass the dictified Pydantic model into Prisma
+        
         new_record = await db.tickerdata.create(
             data=data.dict()  # type: ignore[reportArgumentType]
         )
         return new_record
     except Exception as e:
-        # You can refine this to catch Prisma-specific errors if you like
+       
         raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/")
@@ -65,13 +65,13 @@ async def get_strategy_performance(
             detail="The short_window must be less than the long_window."
         )
 
-    # Fetch all data from the database
+   
     all_data = await db.tickerdata.find_many(order={'datetime': 'asc'})
     
-    # Convert the Prisma model objects to dictionaries so pandas can use them
+    
     data_dicts = [record.dict() for record in all_data]
 
-    # Call the strategy function with the data
+   
     performance_results = moving_average_crossover_strategy(
         data_dicts, short_window, long_window
     )
